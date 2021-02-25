@@ -37,6 +37,7 @@ export default function App() {
     Speech.speak(frase, {
       language: 'pt',
       onStart: iniciaFala,
+      onStopped: finalizaFala,
       onDone: finalizaFala
     })
   }
@@ -52,7 +53,7 @@ export default function App() {
         &nbsp;<FontAwesome name='comment-o' size={50} />
       </Text>
       <Image source={clarice} style={styles.Imagem} />
-      
+
       {/*condicionando o aparecimento do icone*/}
       {falando && <ActivityIndicator size='large' color='#00ff00' />}
 
@@ -60,14 +61,19 @@ export default function App() {
         name='volume-up'
         backgroundColor="#0274d8"
         onPress={falar}
-        styles={styles.Botao}>Ouvir a frase</FontAwesome.Button>
+        style={styles.Botao}>Ouvir a frase</FontAwesome.Button>
 
       <FontAwesome.Button
-        name='stop-circle' 
+
+        name="stop-circle"
+
         onPress={parar}
-        backgroundColor={!falando ? '#cccccc' : '#d9534f'} //operador ternário
+
+        backgroundColor={!falando ? "#cccccc" : "#d9534f"} //operador ternário
+
         disabled={!falando}
-        styles={styles.Botao}>Parar</FontAwesome.Button>
+
+        style={styles.Botao}>Parar</FontAwesome.Button>
     </SafeAreaView>
   )
 }
